@@ -14,9 +14,6 @@ int main() {
 
     initTabuleiro(&tabuleiro);
 
-
-    
-
     while (tabuleiro.acontecendo == 1) {
         for (int i = 0; i < quantJogadores; i++) {
             int x, y;
@@ -30,9 +27,14 @@ int main() {
             scanf("%d", &y);
 
             i = i - atribuirCasa(&tabuleiro, x, y, jogadores[i].simbolo);
+
+            if (verificarVitoria(&tabuleiro, jogadores[i].simbolo) == 1) {
+                printf("terminou\n");
+                break;
+            }
         }
         system("cls");
     }
 
-    mostrarTabuleiro(&tabuleiro);
+
 }

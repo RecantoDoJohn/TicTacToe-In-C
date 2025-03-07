@@ -32,3 +32,25 @@ int atribuirCasa(Tabuleiro *tabuleiro, int x, int y, char simbolo) {
         return 1;
     }
 }
+
+int verificarVitoria(Tabuleiro *tabuleiro, char simbolo) {
+    if ((tabuleiro->casas[0][0] == simbolo && tabuleiro->casas[1][1] == simbolo && tabuleiro->casas[2][2] == simbolo) || 
+        (tabuleiro->casas[2][0] == simbolo && tabuleiro->casas[1][1] == simbolo && tabuleiro->casas[0][2] == simbolo)) {
+            tabuleiro->acontecendo = 0;
+            return 1;
+        }
+
+    // verificar fileiras horizontais
+    for (int x = 0; x < tabuleiro->tamanho; x++) {
+        if (tabuleiro->casas[x][0] == simbolo && tabuleiro->casas[x][1] == simbolo && tabuleiro->casas[x][2] == simbolo) {
+            tabuleiro->acontecendo = 0;
+            return 1;
+        }
+        if (tabuleiro->casas[0][x] == simbolo && tabuleiro->casas[1][x] == simbolo && tabuleiro->casas[2][x] == simbolo) {
+            tabuleiro->acontecendo = 0;
+            return 1;
+        }
+    }
+
+    return 0;
+}
